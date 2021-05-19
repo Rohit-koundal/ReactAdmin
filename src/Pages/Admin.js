@@ -11,18 +11,29 @@ export default class Admin extends Component {
     super();
     this.state = {
       show: false,
+      show1: false,
     };
   }
   handleShow = () => {
     console.log("hello bacha");
-    this.setState = {
+    this.setState({
       show: true,
-    };
+    });
   };
   handleClose = () => {
-    this.setState = {
+    this.setState({
       show: false,
-    };
+    });
+  };
+  secondhandleShow = () => {
+    this.setState({
+      show1: true,
+    });
+  };
+  secondhandleClose = () => {
+    this.setState({
+      show1: false,
+    });
   };
   render() {
     return (
@@ -81,6 +92,7 @@ export default class Admin extends Component {
             <div className="col-md-6">
               <div
                 className="card"
+                onClick={this.secondhandleShow}
                 data-toggle="modal"
                 data-target={`#add-product-modal`}
               >
@@ -102,21 +114,158 @@ export default class Admin extends Component {
           </div>
         </div>
         {/* <!-- Modal --> */}
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <div>
+          <Modal show={this.state.show} onHide={this.handleClose}>
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
+                Category details
+              </h5>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
+                onClick={this.handleClose}
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <Modal.Body>
+              <div className="card">
+                <div className="card-body">
+                  <form>
+                    <input type="hidden" name="operation" value="addcategory" />
+
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="catTitle"
+                        placeholder="Enter category title"
+                        required
+                      />
+                    </div>
+                    <br />
+                    <div className="form-group">
+                      <textarea
+                        style={{ height: "300px" }}
+                        className="form-control"
+                        placeholder="Enter category description"
+                        name="catDescription"
+                        required
+                      ></textarea>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={this.handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={this.handleClose}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+        {/* end model */}
+
+        {/* Starting of first modal */}
+        <Modal show={this.state.show1} onHide={this.secondhandleClose}>
+          <div className="modal-header">
+            <h5 className="modal-title" id="exampleModalLabel">
+              Product details
+            </h5>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+              onClick={this.secondhandleClose}
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <Modal.Body>
+            <form>
+              <input type="hidden" name="operation" value="addproduct" />
+
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter title of product"
+                  name="pName"
+                  required
+                />
+              </div>
+              <br />
+              <div className="form-group">
+                <textarea
+                  style={{ height: "150px;" }}
+                  className="form-control"
+                  placeholder="Enter product description"
+                  name="pDesc"
+                ></textarea>
+              </div>
+              <br />
+              <div className="form-group">
+                <input
+                  type="number"
+                  className="form-control"
+                  placeholder="Enter price of product"
+                  name="pPrice"
+                  required
+                />
+              </div>
+              <br />
+              <div className="form-group">
+                <input
+                  type="number"
+                  className="form-control"
+                  placeholder="Enter product discount"
+                  name="pDiscount"
+                  required
+                />
+              </div>
+              <br />
+              <div className="form-group">
+                <input
+                  type="number"
+                  className="form-control"
+                  placeholder="Enter product Quantity"
+                  name="pQuantity"
+                  required
+                />
+              </div>
+              <br />
+              <div className="form-group">
+                <select name="catId" className="form-control" id="">
+                  <option value="1">Kuch to hona chahiye</option>
+                  <option value="2">Kuch to hai</option>
+                </select>
+              </div>
+              <br />
+              <div className="form-group">
+                <label for="pPic">Select Picture of product</label>
+                <br />
+                <input type="file" id="pPic" name="pPic" required />
+              </div>
+            </form>
+          </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
+            <Button variant="secondary" onClick={this.secondhandleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={this.handleClose}>
+            <Button variant="primary" onClick={this.secondhandleClose}>
               Save Changes
             </Button>
           </Modal.Footer>
         </Modal>
-        {/* end model */}
+        {/* End of 2nd modal */}
       </div>
     );
   }

@@ -7,13 +7,13 @@ export default class Home extends Component {
         <div className="card mx-auto my-auto" style={{ width: "18rem" }}>
           <div className="card-header">Click Your Action here</div>
           <div className="card-body">
-            <form inline>
+            <form>
               <a className="btn btn-primary mx-4" href="Login">
                 Login
-              </a>{" "}
+              </a>
               <a className="btn btn-success" href="Register">
                 Register
-              </a>{" "}
+              </a>
             </form>
           </div>
           <div className="card-footer">Just that's it</div>
