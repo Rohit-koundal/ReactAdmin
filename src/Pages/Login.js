@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 export default class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      islogged: false,
+      islogged: this.props.isLogin,
       Email: "",
       Password: "",
     };
   }
+
   emailChangeHandler = (e) => {
     this.setState({
       Email: e.target.value,
@@ -26,6 +27,8 @@ export default class Login extends Component {
       this.state.Password === "rohit98169"
     ) {
       this.setState({ islogged: true });
+      localStorage.setItem("islogged", true);
+      this.props.history.push("/Admin");
 
       console.log(this.state.Email + "  " + this.state.Password);
     } else {

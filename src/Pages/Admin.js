@@ -7,13 +7,15 @@ import image4 from "../img/keys.png";
 import image5 from "../img/plus.png";
 import Card from "../Component/card";
 export default class Admin extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      islogged: this.props.logged,
       show: false,
       show1: false,
     };
   }
+
   handleShow = () => {
     console.log("hello bacha");
     this.setState({

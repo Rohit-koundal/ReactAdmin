@@ -8,6 +8,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Admin from "./Pages/Admin";
+import Logout from "./Pages/Logout";
 export default class App extends Component {
   render() {
     return (
@@ -18,6 +19,7 @@ export default class App extends Component {
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/Login" component={Login}></Route>
             <Route exact path="/Register" component={Register}></Route>
+            <Route exact path="/Logout" component={Logout}></Route>
             <Route exact path="/Admin" component={Admin}></Route>
           </Switch>
         </BrowserRouter>
